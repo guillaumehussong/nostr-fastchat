@@ -1,6 +1,6 @@
 {
-  "name": "websocket",
-  "version": "0.0.0",
+  "name": "nostr-fastchat",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "types:lint": "nx lint types",
@@ -55,9 +55,11 @@
     "@angular/platform-browser": "13.1.1",
     "@angular/platform-browser-dynamic": "13.1.1",
     "@angular/router": "13.1.1",
+    "@nostr-connect/connect": "^0.4.0",
+    "nostr-relaypool": "^0.6.27",
     "rxjs": "7.5.1",
     "tslib": "2.3.1",
-    "ws": "8.4.0",
+    "ws": "^8.4.0",
     "zone.js": "0.11.4"
   }
 }
