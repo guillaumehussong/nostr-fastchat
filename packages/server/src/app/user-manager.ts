@@ -18,7 +18,9 @@ export class UserManager {
   add(socket: WebSocket, request: IncomingMessage) {
     //  localhost:8080/?name=Jane
     const fullURL = new URL(request.headers.host + request.url)
+    console.log('fullURL', fullURL)
     const name = fullURL.searchParams.get('name')
+    console.log('name', name)
     const user: User = {
       name,
       id: currId++

@@ -20,6 +20,7 @@ export class WsHandler {
     this.userManager.add(socket, request)
 
     socket.on('message', (data) => this.onSocketMessage(socket, data))
+    socket.on('news', () => request)
     socket.on('close', ((code, reason) => this.onSocketClosed(socket, code, reason)))
   }
 
