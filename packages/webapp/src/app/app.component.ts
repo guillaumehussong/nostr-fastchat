@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'I am Angular';
+  title = 'I am Nostr on Angular';
 
   messages: ChatRelayMessage[] = []
   users: User[] = []

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ChatMessage, ChatRelayMessage, SystemNotice, User, WsMessage } from '@websocket/types';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
-import { generatePrivateKey,getPublicKey,  validateEvent, verifySignature, signEvent, getEventHash, relayInit} from 'nostr-tools';
+import { generatePrivateKey,getPublicKey,  validateEvent, verifySignature, signEvent, getEventHash, relayInit, SimplePool} from 'nostr-tools';
 
 @Injectable()
 export class AppService {
@@ -15,6 +15,10 @@ export class AppService {
   privateKey = '58d634bf995d7ed91639df7e05fa5c6ac6c0770207199e947a5b86fd5922b184' || generatePrivateKey();
   publicKey = getPublicKey(this.privateKey);
   relay = relayInit('wss://nostr.wine')
+  pool = new SimplePool()
+
+  relays = ['wss://nostr.wine', 'wss://nostr.debancariser.com', ' wss://eden.nostr.land', ' wss://relay.damus.io' ]
+
 
   connect(name: string) {
 
@@ -36,6 +40,13 @@ export class AppService {
       pubkey: getPublicKey(this.privateKey),
       sig: ''
     }
+
+  /*   this.pubs = this.pool.publish(relays, newEvent)
+
+    this.pubs.on('ok', () => {
+      // this may be called multiple times, once for every relay that accepts the event
+      // ...
+    }) */
 
     event.id = getEventHash(event)
     event.sig = signEvent(event, this.privateKey)
