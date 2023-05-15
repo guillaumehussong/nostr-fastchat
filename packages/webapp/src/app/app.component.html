@@ -1,6 +1,6 @@
 <div class="login-state" [ngSwitch]="currentUser === undefined">
   <ng-container *ngSwitchCase="true">
-    <form>
+    <form id="usernameForm" class="app_form" >
       <mat-form-field appearance="standard">
         <input #userName matInput placeholder="What's on your name?">
       </mat-form-field>
