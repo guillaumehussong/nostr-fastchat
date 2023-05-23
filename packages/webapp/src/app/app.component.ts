@@ -15,8 +15,7 @@ export class AppComponent implements OnInit {
   users: User[] = []
   currentUser: User
 
-  constructor(private appService: AppService, private snackbar: MatSnackBar) {
-  }
+  constructor(private appService: AppService, private snackbar: MatSnackBar) {}
 
   ngOnInit() {
     this.appService.chatMessage$.subscribe(msg => this.messages = [...this.messages, msg])

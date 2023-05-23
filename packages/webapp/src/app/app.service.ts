@@ -41,12 +41,12 @@ export class AppService {
       sig: ''
     }
 
-  /*   this.pubs = this.pool.publish(relays, newEvent)
-
-    this.pubs.on('ok', () => {
-      // this may be called multiple times, once for every relay that accepts the event
-      // ...
-    }) */
+    // this.pubs = this.pool.publish(relays, event)
+    //
+    // this.pubs.on('ok', () => {
+    //   // this may be called multiple times, once for every relay that accepts the event
+    //   // ...
+    // })
 
     event.id = getEventHash(event)
     event.sig = signEvent(event, this.privateKey)

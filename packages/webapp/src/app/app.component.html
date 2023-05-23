@@ -1,11 +1,11 @@
 <div class="login-state" [ngSwitch]="currentUser === undefined">
   <ng-container *ngSwitchCase="true">
-    <form id="usernameForm" class="app_form" >
+<!--    <form id="usernameForm" class="app_form" >-->
       <mat-form-field appearance="standard">
         <input #userName matInput placeholder="What's on your name?">
       </mat-form-field>
       <button type="submit" (click)="connect(userName)" mat-raised-button color="primary">Connect</button>
-    </form>
+<!--    </form>-->
   </ng-container>
 
   <ng-container *ngSwitchCase="false">
