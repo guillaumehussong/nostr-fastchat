@@ -23,7 +23,10 @@ export class UserManager {
     console.log('name', name)
     const user: User = {
       name,
-      id: currId++
+      id: currId++,
+      publicKey: '',
+      privateKey: '',
+      relays: [],
     }
 
     const systemNotice: SystemNotice = {
