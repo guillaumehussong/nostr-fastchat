@@ -9,9 +9,11 @@ export class AppService {
 
   user$ = new BehaviorSubject<User>(undefined)
   socket: WebSocketSubject<WsMessage>
+
   chatMessage$ = new Subject<ChatRelayMessage>()
   systemNotice$ = new Subject<SystemNotice>()
   userList$ = new BehaviorSubject<User[]>([])
+
   privateKey = '58d634bf995d7ed91639df7e05fa5c6ac6c0770207199e947a5b86fd5922b184' || generatePrivateKey();
   publicKey = getPublicKey(this.privateKey);
   relay = relayInit('wss://nostr.wine')
@@ -19,9 +21,9 @@ export class AppService {
 
   relays = ['wss://nostr.wine', 'wss://nostr.debancariser.com', ' wss://eden.nostr.land', ' wss://relay.damus.io' ]
 
-
   connect(name: string) {
 
+    console.log(this.pool)
     console.log("private key = " + this.privateKey);
     console.log("public key = " + this.publicKey);
 
@@ -53,7 +55,7 @@ export class AppService {
 
     validateEvent(event)
     verifySignature(event)
-    console.log('event', event)
+
     this.relay.on('connect', () => {
       console.log(`connected to ${this.relay.url}`)
     })
@@ -69,7 +71,7 @@ export class AppService {
         ids: [event.id]
       }
     ])
-    console.log('subscribed to', sub)
+
     sub.on('event', event => {
       console.log('we got the event we wanted:', event)
     })

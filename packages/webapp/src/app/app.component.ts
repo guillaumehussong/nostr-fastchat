@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
   connect(userNameInput: HTMLInputElement) {
     const name = userNameInput.value
-    console.log(`Connecting as ${name}`)
+
     this.appService.connect(name)
   }
 
