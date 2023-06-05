@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ChatMessage, ChatRelayMessage, SystemNotice, User, WsMessage } from '@websocket/types';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { generatePrivateKey,getPublicKey,  validateEvent, verifySignature, signEvent, getEventHash, relayInit, SimplePool} from 'nostr-tools';
 
-@Injectable()
 export class AppService {
 
   user$ = new BehaviorSubject<User>(undefined)

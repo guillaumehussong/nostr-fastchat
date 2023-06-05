@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ChatRelayMessage, SystemNotice, User } from '@websocket/types';
 import { AppService } from './app.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,12 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgSwitch, NgSwitchCase, NgFor } from '@angular/common';
+import { bootstrapApplication} from "@angular/platform-browser";
 
 @Component({
     selector: 'websocket-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
+    providers: [AppService],
     imports: [NgSwitch, NgSwitchCase, MatFormFieldModule, MatInputModule, MatButtonModule, MatListModule, NgFor, MatCardModule]
 })
 export class AppComponent implements OnInit {
@@ -23,7 +25,8 @@ export class AppComponent implements OnInit {
   users: User[] = []
   currentUser: User
 
-  constructor(private appService: AppService, private snackbar: MatSnackBar) {}
+  appService = inject(AppService);
+  snackbar = inject(MatSnackBar);
 
   ngOnInit() {
     this.appService.chatMessage$.subscribe(msg => this.messages = [...this.messages, msg])
@@ -47,3 +50,4 @@ export class AppComponent implements OnInit {
     this.snackbar.open(notice.contents, undefined, { duration: 5000 })
   }
 }
+bootstrapApplication(AppComponent);
